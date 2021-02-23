@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1 id="title">Library</h1>
+	<br>
+
+	<div id="newBookContainer">
+		<div id="newBookButtonContainer">
+			<div id="newBookButton">New Book</div>
+		</div>
+
+		<div id="bookFormContainer">
+		<form id="bookForm">
+			<p><label for="bookTitle">Title:</label><input type="text" id="bookTitle"></p>
+			<p><label for="bookAuthor">Author:</label><input type="text" id="bookAuthor"></p>
+			<p><label for="bookPages">Pages:</label><input type="text" id="bookPages"></p>
+			<p><label for="bookRead">Read:</label><input type="checkbox" id="bookRead"></p><br>
+			<p><input type="button" onclick="addBookToLibrary()" value="Submit"></p>
+		</form>
+		</div>
+	</div>
+
+	<div id="booksContainer"></div>
+
+	<script type="text/javascript" src="library.js"></script>
+</body>
+</html>
