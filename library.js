@@ -80,9 +80,7 @@ function displayBooks() {
 			bookRead.style.background = book.read ? "rgb(0,139,0)" : "rgb(139,0,0)";
 		});
 		bookDelete.addEventListener('click', () => {
-			let bookIndex = myLibrary.indexOf(book); // Get book position
-			myLibrary.splice(bookIndex,1); // Remove book from myLibrary
-			booksContainer.removeChild(booksContainer.childNodes[bookIndex]); // Remove book from booksContainer
+			removeBookFromLibrary(book);
 		});
 		bookDelete.addEventListener('mouseenter', () => {
 			bookDelete.style.background = "rgb(96,0,0)";
@@ -108,6 +106,8 @@ function addBookToLibrary() {
 	myLibrary.push(newBook);
 	displayBooks();
 
+	saveLibrary(myLibrary); // Save Library to local storage
+
 	// Clear Form
 	document.getElementById('bookTitle').value = '';
 	document.getElementById('bookAuthor').value = '';
@@ -119,4 +119,32 @@ function addBookToLibrary() {
 	bookFormContainer.style.height = '0';
 }
 
+function removeBookFromLibrary(book) {
+	let bookIndex = myLibrary.indexOf(book); // Get book position
+
+	myLibrary.splice(bookIndex,1); // Remove book from myLibrary
+
+	// Remove book from booksContainer
+	booksContainer.removeChild(booksContainer.childNodes[bookIndex]);
+
+	saveLibrary(myLibrary); // Save Library to local storage
+
+	// If Library is empty, clear local storage
+	if (myLibrary.length == 0) {
+		localStorage.clear();
+	}
+}
+
+function loadLibrary() {
+	// If local storage is not empty, load Library from local storage
+	if (localStorage.getItem('myLibrary')) {
+		myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+	}
+}
+
+function saveLibrary(myLibrary) {
+	localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+loadLibrary();
 displayBooks();
