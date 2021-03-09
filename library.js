@@ -4,12 +4,24 @@ let bookFormContainer = document.getElementById('bookFormContainer');
 let bookForm = document.getElementById('bookForm');
 let booksContainer = document.getElementById('booksContainer');
 
+// Book Constructor
 function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
 }
+
+// Book Class
+// Use class instead of constructor for Book
+/* class Book {
+	constructor(title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+	}
+} */
 
 Book.prototype.toggleRead = function() {
 	this.read = this.read ? false : true;
